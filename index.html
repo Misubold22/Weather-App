@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Vremea</title>
+    <script defer src="main.js"></script></head>
+    <div class="body-container">
+      <body id="body" style="display: none">
+        <div class="loader-container">
+          <div class="spinner"></div>
+        </div>
+        <div class="widget-container">
+          <div class="top-bar">
+            <div class="logo">
+              <button
+                class="block_refresh"
+                id="id_block_refresh"
+                title="Refresh"
+              ></button>
+              <div class="toggle-container">
+                <div class="button r" id="button-3">
+                  <input type="checkbox" class="checkbox" />
+                  <div class="knobs"></div>
+                  <div class="layer"></div>
+                </div>
+              </div>
+            </div>
+            <div class="search-box">
+              <input
+                class="search-txt"
+                type="text"
+                id="location-search"
+                placeholder="Enter location..."
+                required
+              />
+              <a class="search-btn" href="#">
+                <i class="search-png"></i>
+              </a>
+            </div>
+            <div class="time-display">
+              <div class="clock" id="clock">12:00</div>
+              <div class="date" id="date">Monday, January 1</div>
+            </div>
+          </div>
+          <div id="loading"></div>
+          <div class="current-weather">
+            <div class="temp-info">
+              <div class="location">Location</div>
+              <div class="temperature" id="temperature"></div>
+              <div class="weather-condition" id="weather-condition">
+                Mostly Sunny
+              </div>
+            </div>
+            <div class="weather-icon" id="weather-icon">
+              <img id="myimg" src="c570cb36ab9ba250cff7.svg" />
+            </div>
+          </div>
+          <div class="additional-info">
+            <div class="info-box">
+              <div class="info-icon"></div>
+              <img class="wind-png" />
+              <div class="info-label">WIND</div>
+              <div class="wind-box">
+                <div class="info-value" id="wind-speed"></div>
+                <div class="info-value" id="unit">km</div>
+              </div>
+            </div>
+            <div class="info-box">
+              <div class="info-icon"></div>
+              <img class="humidity-png" />
+              <div class="info-label">HUMIDITY</div>
+              <div class="info-value" id="humidity">65%</div>
+            </div>
+            <div class="info-box">
+              <div class="info-icon"></div>
+              <img class="thermometer-png" />
+              <div class="info-label">FEELS LIKE</div>
+              <div class="info-value" id="feels-like">26°</div>
+            </div>
+            <div class="info-box">
+              <div class="sunrise-box">
+                <img class="sunrise-png" />
+                <div class="info-label">SUNRISE</div>
+                <div class="info-value" id="sunrise">10%</div>
+              </div>
+              <div class="sunset-box">
+                <img class="sunset-png" />
+                <div class="info-label">SUNSET</div>
+                <div class="info-value" id="sunset">10%</div>
+              </div>
+            </div>
+          </div>
+          <div class="forecast-hours">
+            <div class="forecast-title">NEXT HOURS</div>
+            <div class="forecast-wrapper">
+              <div class="forecast-container" id="forecast-container">
+                <div class="forecast-hours-item">
+                  <div class="forecast-day">Today</div>
+                  <div class="forecast-hour">17:00</div>
+                  <div class="forecast-hour-icon">
+                    <img class="forecast-hour-icons" src="359be0223e5dad9e8aac.svg" />
+                  </div>
+                  <div class="forecast-hour-temp">25°</div>
+                </div>
+                <div class="forecast-hours-item">
+                  <div class="forecast-day">Today</div>
+                  <div class="forecast-hour"></div>
+                  <div class="forecast-hour-icon">
+                    <img
+                      class="forecast-hour-icons"
+                      src="047b83fb21d100a02d64.svg"
+                    />
+                  </div>
+                  <div class="forecast-hour-temp">23°</div>
+                </div>
+                <div class="forecast-hours-item">
+                  <div class="forecast-day">Today</div>
+                  <div class="forecast-hour">19:00</div>
+                  <div class="forecast-hour-icon">
+                    <img class="forecast-hour-icons" src="359be0223e5dad9e8aac.svg" />
+                  </div>
+                  <div class="forecast-hour-temp">19°</div>
+                </div>
+                <div class="forecast-hours-item">
+                  <div class="forecast-day">Today</div>
+                  <div class="forecast-hour">20:00</div>
+                  <div class="forecast-hour-icon">
+                    <img class="forecast-hour-icons" src="359be0223e5dad9e8aac.svg" />
+                  </div>
+                  <div class="forecast-hour-temp">18°</div>
+                </div>
+                <div class="forecast-hours-item">
+                  <div class="forecast-day">Today</div>
+                  <div class="forecast-hour">21:00</div>
+                  <div class="forecast-hour-icon">
+                    <img class="forecast-hour-icons" src="359be0223e5dad9e8aac.svg" />
+                  </div>
+                  <div class="forecast-hour-temp">22°</div>
+                </div>
+                <div class="forecast-hours-item">
+                  <div class="forecast-day">Today</div>
+                  <div class="forecast-hour">22:00</div>
+                  <div class="forecast-hour-icon">
+                    <img class="forecast-hour-icons" src="359be0223e5dad9e8aac.svg" />
+                  </div>
+                  <div class="forecast-hour-temp">23°</div>
+                </div>
+                <div class="forecast-hours-item">
+                  <div class="forecast-day">Today</div>
+                  <div class="forecast-hour">23:00</div>
+                  <div class="forecast-hour-icon">
+                    <img class="forecast-hour-icons" src="359be0223e5dad9e8aac.svg" />
+                  </div>
+                  <div class="forecast-hour-temp">19°</div>
+                </div>
+                <div class="forecast-hours-item">
+                  <div class="forecast-day">Sal</div>
+                  <div class="forecast-hour">00:00</div>
+                  <div class="forecast-hour-icon">
+                    <img class="forecast-hour-icons" src="359be0223e5dad9e8aac.svg" />
+                  </div>
+                  <div class="forecast-hour-temp">18°</div>
+                </div>
+                <div class="forecast-hours-item">
+                  <div class="forecast-day">Tomorrow</div>
+                  <div class="forecast-hour">01:00</div>
+                  <div class="forecast-hour-icon">
+                    <img class="forecast-hour-icons" src="359be0223e5dad9e8aac.svg" />
+                  </div>
+                  <div class="forecast-hour-temp">22°</div>
+                </div>
+                <div class="forecast-hours-item">
+                  <div class="forecast-day">Tomorrow</div>
+                  <div class="forecast-hour">02:00</div>
+                  <div class="forecast-hour-icon">
+                    <img class="forecast-hour-icons" src="359be0223e5dad9e8aac.svg" />
+                  </div>
+                  <div class="forecast-hour-temp">26°</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="forecast">
+            <div class="forecast-title">6-DAY FORECAST</div>
+            <div class="forecast-wrapper">
+              <div class="forecast-container" id="forecast-container">
+                <div class="forecast-item">
+                  <div class="forecast-days">TUE</div>
+                  <div class="forecast-day-icon">
+                    <img class="forecast-day-icons" src="359be0223e5dad9e8aac.svg" />
+                  </div>
+                  <div class="forecast-day-temp-container">
+                    <div class="forecast-day-temp-min">23°</div>
+                    <div class="forecast-day-temp-max">23°</div>
+                  </div>
+                </div>
+                <div class="forecast-item">
+                  <div class="forecast-days">WED</div>
+                  <div class="forecast-day-icon">
+                    <img class="forecast-day-icons" src="359be0223e5dad9e8aac.svg" />
+                  </div>
+                  <div class="forecast-day-temp-container">
+                    <div class="forecast-day-temp-min">23°</div>
+                    <div class="forecast-day-temp-max">23°</div>
+                  </div>
+                </div>
+                <div class="forecast-item">
+                  <div class="forecast-days">THU</div>
+                  <div class="forecast-day-icon">
+                    <img class="forecast-day-icons" src="2cfb9c3b496799964f74.svg" />
+                  </div>
+                  <div class="forecast-day-temp-container">
+                    <div class="forecast-day-temp-min">23°</div>
+                    <div class="forecast-day-temp-max">23°</div>
+                  </div>
+                </div>
+                <div class="forecast-item">
+                  <div class="forecast-days">FRI</div>
+                  <div class="forecast-day-icon">
+                    <img
+                      class="forecast-day-icons"
+                      src="047b83fb21d100a02d64.svg"
+                    />
+                  </div>
+                  <div class="forecast-day-temp-container">
+                    <div class="forecast-day-temp-min">23°</div>
+                    <div class="forecast-day-temp-max">23°</div>
+                  </div>
+                </div>
+                <div class="forecast-item">
+                  <div class="forecast-days">SAT</div>
+                  <div class="forecast-day-icon">
+                    <img
+                      class="forecast-day-icons"
+                      src="e73724b15579fda0dd89.svg"
+                    />
+                  </div>
+                  <div class="forecast-day-temp-container">
+                    <div class="forecast-day-temp-min">23°</div>
+                    <div class="forecast-day-temp-max">23°</div>
+                  </div>
+                </div>
+                <div class="forecast-item">
+                  <div class="forecast-days">SUN</div>
+                  <div class="forecast-day-icon">
+                    <img
+                      class="forecast-day-icons"
+                      src="30e9858cf54830097590.svg"
+                    />
+                  </div>
+                  <div class="forecast-day-temp-container">
+                    <div class="forecast-day-temp-min">23°</div>
+                    <div class="forecast-day-temp-max">23°</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+    </div>
+  </html>
+</html>

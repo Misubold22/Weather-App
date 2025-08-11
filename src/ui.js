@@ -1,4 +1,5 @@
-import { handleUnitGroup, roundHr } from "./utils";
+import { handleUnitGroup, roundHr } from "./utils.js";
+import defaultRainIcon from "./asset/rain.svg";
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-dupe-keys */
 
@@ -45,7 +46,22 @@ function updateTime() {
 }
 function showLocation(location) {
   document.querySelector(".location").textContent = location;
-  window.history.pushState({}, "", "/");
+  // window.history.pushState({}, "", "/");
+}
+
+function showDefaultIcons() {
+  const forecastDayNodelist = document.querySelectorAll(".forecast-day-icons");
+  const forecastHourNodelist = document.querySelectorAll(
+    ".forecast-hour-icons"
+  );
+
+  forecastDayNodelist.forEach((img) => {
+    img.src = defaultRainIcon;
+  });
+
+  forecastHourNodelist.forEach((img) => {
+    img.src = defaultRainIcon;
+  });
 }
 
 function showSixDaysForecast() {
@@ -61,7 +77,7 @@ function showSixDaysForecast() {
     thisDay.setDate(today.getDate() + i);
     forecastDays[i].textContent = new Intl.DateTimeFormat(
       "en-US",
-      options,
+      options
     ).format(thisDay);
   }
 }
@@ -83,7 +99,7 @@ function showTenHoursForecast(timeString) {
     thisDay.setHours(today.getHours() + 1 + i);
 
     const tenHours = new Intl.DateTimeFormat("en-US", timeOptions).format(
-      thisDay,
+      thisDay
     );
     hours.push(tenHours);
   }
@@ -120,7 +136,7 @@ function createWeatherIconSrc(imgName) {
 
 async function forecastHourIcon(nextTenHrs, iconIndex, imgIndex) {
   const forecastHoursNodelist = document.querySelectorAll(
-    ".forecast-hour-icons",
+    ".forecast-hour-icons"
   );
   const importedImage = await import(
     `./asset/${nextTenHrs[iconIndex].icon}.svg`
@@ -212,6 +228,7 @@ function hideLoading() {
 export {
   updateTime,
   showLocation,
+  showDefaultIcons,
   showSixDaysForecast,
   showTenHoursForecast,
   showForecastDay,

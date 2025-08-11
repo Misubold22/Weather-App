@@ -7,6 +7,7 @@ import "./styles.css";
 import {
   updateTime,
   showLocation,
+  showDefaultIcons,
   showSixDaysForecast,
   showTenHoursForecast,
   showForecastDay,
@@ -18,7 +19,7 @@ import {
   showContent,
   displayLoading,
   hideLoading,
-} from "./ui";
+} from "./ui.js";
 
 import {
   getLocalStorageUnitGroup,
@@ -28,17 +29,18 @@ import {
   deleteLocalStorageItem,
   listenToggleBtn,
   capitalize,
-} from "./utils";
+} from "./utils.js";
 
 updateTime();
 setInterval(updateTime, 60000); // Update every minute
+showDefaultIcons();
 
 async function getWeatherInfo(city, unitGroup) {
   displayLoading();
   try {
     const response = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${unitGroup}&key=96MD4XDBEYVP6TFJS5JSQ7Y9F&contentType=json`,
-      { mode: "cors" },
+      { mode: "cors" }
     );
 
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -82,7 +84,7 @@ async function userLocation(localStorageLocation) {
   try {
     const response = await fetch(
       "https://api.ipgeolocation.io/v2/ipgeo?apiKey=d901284ba6224f3682ec05af1d6c6ad3",
-      requestOptions,
+      requestOptions
     );
 
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -106,15 +108,19 @@ async function userLocation(localStorageLocation) {
 
 function getSearchedCityName() {
   const btn = document.querySelector(".search-btn");
+
   btn.addEventListener("click", () => {
-    const cityName = document.getElementById("location-search").value;
     const formElement = document.querySelector(".search-txt");
-    formElement.reportValidity();
+
+    if (!formElement.checkValidity()) {
+      formElement.reportValidity();
+      return;
+    }
+    const cityName = formElement.value.trim();
     if (cityName) {
       getWeatherInfo(capitalize(cityName), getLocalStorageUnitGroup());
       setLocalStorageLocation(cityName);
-      document.getElementById("location-search").value = "";
-      document.querySelector(".search-txt").value = "";
+      formElement.value = "";
     }
   });
 }
@@ -168,8 +174,10 @@ const refreshBtn = document.getElementById("id_block_refresh");
 function refresh() {
   refreshBtn.classList.toggle("refresh_animate");
   setTimeout(() => refreshBtn.classList.toggle("refresh_animate"), 2000);
+
   setTimeout(() => {
     window.location.reload();
   }, 1000);
 }
+
 refreshBtn.addEventListener("click", refresh);
